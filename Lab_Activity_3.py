@@ -77,6 +77,69 @@ industrial_building1.get_lab()
 industrial_building1.building_function()
 industrial_building1.close_doors()
 
+class Residential_Building(Building):
+    def __init__(self, name, location, size, floors, number_of_units, residents, amenities, pet_friendly, has_security, emergency_contacts):
+        super().__init__(name, location, size, floors)
+        self.number_of_units = number_of_units
+        self.residents = residents
+        self.amenities = amenities
+        self.pet_friendly = pet_friendly
+        self.has_security = has_security
+        self.emergency_contacts = emergency_contacts
+
+    def get_residents(self):
+        print(f"Residents in {self.name}:")
+        for resident in self.residents:
+            print(f"- {resident}")
+
+    def get_amenities(self):
+        print(f"Amenities in {self.name}:")
+        for amenity in self.amenities:
+            print("- " + amenity)
+
+    def get_pet_policy(self):
+        if self.pet_friendly:
+            print(self.name + " is pet-friendly. Pets are allowed, but only common domestic animals like cats or dogs.")
+        else:
+            print(self.name + " is not pet-friendly. Pets are not allowed at all.")
+
+    def get_security_status(self):
+        if self.has_security:
+            print(f"Security personnel are present in {self.name}.")
+        else:
+            print(f"No security personnel in {self.name}.")
+
+    def get_emergency_contacts(self):
+        print(f"Emergency contacts for {self.name}:")
+        for role, number in self.emergency_contacts.items():
+            print(role + ": " + number)
+
+    def building_function(self):
+        if self.door_open:
+            print(f"{self.name} is a residential building located in {self.location}.")
+            print(f"It has {str(self.floors)} floors, {str(self.number_of_units)} units, and a size of {self.size} square meters.")
+        else:
+            print("Open the doors first.")
+
+residential_building2 = Residential_Building(
+    "Tagaytay Prime Residences", "Tagaytay City", "12,000", 23, 300,
+    ["John", "Maria", "Chris", "Sofia", "David", "Emma"],
+    ["Outdoor Swimming Pool", "Viewing Deck", "Restaurant", "Coffee House",
+     "Minimarket", "Hair/Beauty Salon", "Terrace", "Balcony",
+     "Flat-screen TV", "Elevator Access", "Air Conditioning"],
+    False,
+    True,
+    {"Fire Department": "0946-483-1193", "Maintenance": "0927-123-4567"}
+)
+residential_building2.building_function()
+residential_building2.open_doors()
+residential_building2.get_residents()
+residential_building2.get_pet_policy()
+residential_building2.get_emergency_contacts()
+residential_building2.get_amenities()
+residential_building2.get_security_status()
+residential_building2.building_function()
+residential_building2.close_doors()
 
        
 
