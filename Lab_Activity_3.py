@@ -95,13 +95,13 @@ class Residential_Building(Building):
     def get_amenities(self):
         print(f"Amenities in {self.name}:")
         for amenity in self.amenities:
-            print("- " + amenity)
+            print(f"- {amenity}")
 
     def get_pet_policy(self):
         if self.pet_friendly:
-            print(self.name + " is pet-friendly. Pets are allowed, but only common domestic animals like cats or dogs.")
+            print(f"{self.name} is pet-friendly. Pets are allowed, but only common domestic animals like cats or dogs.")
         else:
-            print(self.name + " is not pet-friendly. Pets are not allowed at all.")
+            print(f"{self.name} is not pet-friendly. Pets are not allowed at all.")
 
     def get_security_status(self):
         if self.has_security:
@@ -112,7 +112,7 @@ class Residential_Building(Building):
     def get_emergency_contacts(self):
         print(f"Emergency contacts for {self.name}:")
         for role, number in self.emergency_contacts.items():
-            print(role + ": " + number)
+            print(f"{role}: {number}")
 
     def building_function(self):
         if self.door_open:
