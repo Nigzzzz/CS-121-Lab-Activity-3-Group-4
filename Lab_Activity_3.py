@@ -75,70 +75,6 @@ class Industrial_Building(Building):
             print("Open the doors first.")
 
 class Residential_Building(Building):
-    def __init__(self, name, location, size, floors, number_of_units, residents, amenities, pet_friendly, has_security, emergency_contacts):
-        super().__init__(name, location, size, floors)
-        self.number_of_units = number_of_units
-        self.residents = residents
-        self.amenities = amenities
-        self.pet_friendly = pet_friendly
-        self.has_security = has_security
-        self.emergency_contacts = emergency_contacts
-
-    def get_residents(self):
-        print(f"Residents in {self.name}:")
-        for resident in self.residents:
-            print(f"- {resident}")
-
-    def get_amenities(self):
-        print(f"Amenities in {self.name}:")
-        for amenity in self.amenities:
-            print(f"- {amenity}")
-
-    def get_pet_policy(self):
-        if self.pet_friendly:
-            print(f"{self.name} is pet-friendly. Pets are allowed, but only common domestic animals like cats or dogs.")
-        else:
-            print(f"{self.name} is not pet-friendly. Pets are not allowed at all.")
-
-    def get_security_status(self):
-        if self.has_security:
-            print(f"Security personnel are present in {self.name}.")
-        else:
-            print(f"No security personnel in {self.name}.")
-
-    def get_emergency_contacts(self):
-        print(f"Emergency contacts for {self.name}:")
-        for role, number in self.emergency_contacts.items():
-            print(f"{role}: {number}")
-
-    def building_function(self):
-        if self.door_open:
-            print(f"{self.name} is a residential building located in {self.location}.")
-            print(f"It has {str(self.floors)} floors, {str(self.number_of_units)} units, and a size of {self.size} square meters.")
-        else:
-            print("Open the doors first.")
-
-residential_building2 = Residential_Building(
-    "Tagaytay Prime Residences", "Tagaytay City", "12,000", 23, 300,
-    ["John", "Maria", "Chris", "Sofia", "David", "Emma"],
-    ["Outdoor Swimming Pool", "Viewing Deck", "Restaurant", "Coffee House",
-     "Minimarket", "Hair/Beauty Salon", "Terrace", "Balcony",
-     "Flat-screen TV", "Elevator Access", "Air Conditioning"],
-    False,
-    True,
-    {"Fire Department": "0946-483-1193", "Maintenance": "0927-123-4567"}
-)
-residential_building2.building_function()
-residential_building2.open_doors()
-residential_building2.get_residents()
-residential_building2.get_pet_policy()
-residential_building2.get_emergency_contacts()
-residential_building2.get_amenities()
-residential_building2.get_security_status()
-residential_building2.building_function()
-residential_building2.close_doors()
-
-class Residential_Building(Building):
     def __init__(self, location, size, floors, number_of_units, residents, amenities, pet_friendly, has_security, emergency_contacts):
         super().__init__(location, size, floors)
         self.number_of_units = number_of_units
@@ -193,71 +129,75 @@ print("Welcome to the Building Management System!\n")
 print("Choose the type of Building: ")
 print("1. Industrial Building")
 print("2. Residential Building\n")
-choice = input("Enter your choice (1 or 2): ")
 
-if choice == "1":
-    if input("Do you want to open the doors of the building? (yes/no): ").lower() == "yes":
-        location = input("Enter the location of the building: ")
-        size = int(input("Enter the size of the building (in square meters): "))
-        floors = int(input("Enter the number of floors in the building: "))
-        machinery_list = input("Enter the list of machinery (comma-separated): ").split(", ")
-        has_lab_input = input("Does the building have a lab? (yes/no): ").lower()
-        has_lab = has_lab_input == "yes"
-        if has_lab:
-            lab_type = input("Enter the type of lab: ")
-            equipment_list = input("Enter the list of equipment (comma-separated): ").split(", ")
+while True:
+    choice = input("Enter your choice (1 or 2): ")
+
+    if choice == "1":
+        if input("Do you want to open the doors of the building? (yes/no): ").lower() == "yes":
+            location = input("Enter the location of the building: ")
+            size = int(input("Enter the size of the building (in square meters): "))
+            floors = int(input("Enter the number of floors in the building: "))
+            machinery_list = input("Enter the list of machinery (comma-separated): ").split(", ")
+            has_lab_input = input("Does the building have a lab? (yes/no): ").lower()
+            has_lab = has_lab_input == "yes"
+            if has_lab:
+                lab_type = input("Enter the type of lab: ")
+                equipment_list = input("Enter the list of equipment (comma-separated): ").split(", ")
+            else:
+                lab_type = None
+                equipment_list = None
+            building = Industrial_Building(location, size, floors, machinery_list, has_lab, lab_type, equipment_list)
+            print()
+            building.open_doors()
+            building.get_machinery()
+            building.get_lab()
+            print()
+            building.building_function()
+            print()
+            if input("Do you want to close the doors of the building? (yes/no): ").lower() == "yes":
+                building.close_doors()
+            else:
+                print(f"The doors of {building} are still open.")
         else:
-            lab_type = None
-            equipment_list = None
-        building = Industrial_Building(location, size, floors, machinery_list, has_lab, lab_type, equipment_list)
-        print()
-        building.open_doors()
-        building.get_machinery()
-        building.get_lab()
-        print()
-        building.building_function()
-        print()
-        if input("Do you want to close the doors of the building? (yes/no): ").lower() == "yes":
-            building.close_doors()
+            print("\nDoors remain closed. Goodbye!")
+
+    elif choice == "2":
+        if input("Do you want to open the doors of the building? (yes/no): ").lower() == "yes":
+            location = input("Enter the location of the building: ").strip()
+            size = int(input("Enter the size of the building (in square meters): "))
+            floors = int(input("Enter the number of floors in the building: "))
+            number_of_units = int(input("Enter the number of units in the building: "))
+            residents = input("Enter the list of residents (comma-separated): ").split(", ")
+            amenities = input("Enter the list of amenities (comma-separated): ").split(", ")
+            pet_friendly = input("Is the building pet-friendly? (yes/no): ").lower() == "yes"
+            has_security = input("Does the building have security personnel? (yes/no): ").lower() == "yes"
+            emergency_contacts = {}
+            while True:
+                role = input("Enter role for emergency contact (or 'done' to finish): ")
+                if role.lower() == "done":
+                    break
+                number = input(f"Enter phone number for {role}: ")
+                emergency_contacts[role] = number
+            building = Residential_Building(location, size, floors, number_of_units, residents, amenities, pet_friendly, has_security, emergency_contacts)
+            print()
+            building.open_doors()
+            building.get_residents()
+            building.get_amenities()
+            building.get_pet_policy()
+            building.get_security_status()
+            building.get_emergency_contacts()
+            print()
+            building.building_function()
+            print()
+            if input("Do you want to close the doors of the building? (yes/no): ").lower() == "yes":
+                building.close_doors()
+            else:
+                print(f"The doors of {building} are still open.")
         else:
-            print(f"The doors of {building} are still open.")
+            print("\nDoors remain closed. Goodbye!")
+
     else:
-        print("\nDoors remain closed. Goodbye!")
-
-elif choice == "2":
-    if input("Do you want to open the doors of the building? (yes/no): ").lower() == "yes":
-        location = input("Enter the location of the building: ").strip()
-        size = int(input("Enter the size of the building (in square meters): "))
-        floors = int(input("Enter the number of floors in the building: "))
-        number_of_units = int(input("Enter the number of units in the building: "))
-        residents = input("Enter the list of residents (comma-separated): ").split(", ")
-        amenities = input("Enter the list of amenities (comma-separated): ").split(", ")
-        pet_friendly = input("Is the building pet-friendly? (yes/no): ").lower() == "yes"
-        has_security = input("Does the building have security personnel? (yes/no): ").lower() == "yes"
-        emergency_contacts = {}
-        while True:
-            role = input("Enter role for emergency contact (or 'done' to finish): ")
-            if role.lower() == "done":
-                break
-            number = input(f"Enter phone number for {role}: ")
-            emergency_contacts[role] = number
-        building = Residential_Building(location, size, floors, number_of_units, residents, amenities, pet_friendly, has_security, emergency_contacts)
-        print()
-        building.open_doors()
-        building.get_residents()
-        building.get_amenities()
-        building.get_pet_policy()
-        building.get_security_status()
-        building.get_emergency_contacts()
-        print()
-        building.building_function()
-        print()
-        if input("Do you want to close the doors of the building? (yes/no): ").lower() == "yes":
-            building.close_doors()
-        else:
-            print(f"The doors of {building} are still open.")
-    else:
-        print("\nDoors remain closed. Goodbye!")
-
-else:
-    print("Invalid choice.")
+        print("Invalid choice.\n")
+        continue
+    break
