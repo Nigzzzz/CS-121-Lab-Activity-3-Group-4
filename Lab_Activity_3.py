@@ -121,6 +121,81 @@ class Residential_Building(Building):
         else:
             print("Open the doors first.")
 
+class Agricultural_Building(Building):
+    def __init__(self, location, size, floors, livestock_facilities, livestocks, equipment_storages, equipment_list, storage_units, crops, crop_list):
+        super().__init__(location, size, floors)
+        self.livestock_facilities = livestock_facilities
+        self.livestocks = livestocks
+        self.equipment_storages = equipment_storages
+        self.equipment_list = equipment_list
+        self.storage_units = storage_units
+        self.crops = crops
+        self.crop_list = crop_list
+
+    def __str__(self):
+        return f"Agricultural Building at {self.location} with {self.floors} floors"
+
+    def get_storage(self):
+        if self.livestock_facilities:
+            print(f"Livestock facilities are available in {self}")
+            print("Livestocks available are:")
+            for livestock in self.livestocks:
+                print(f"- {livestock}")
+        else:
+            print(f"Livestock facilities are unavailable in {self}")
+    
+    def get_crops(self):
+        if self.crops:
+            print(f"There are crops available in {self}")
+            print("Here are the available crops:")
+            for crop in self.crop_list:
+                print(f"- {crop}")
+        else:
+            print(f"There are no available crops in {self}")
+
+    def get_equipment_storage(self):
+        if self.equipment_storages:
+            print(f"Equipment storages are available in {self}")
+            print("Here are the equipment storages available:")
+            for storage_unit in self.storage_units:
+                print(f"- {storage_unit}")
+            print("Here are the available equipments:")
+            for equipment in self.equipment_list:
+                print(f"- {equipment}")
+        else:
+            print(f"There are no available storages and equipments in {self}")
+
+    def summarize_resources(self):
+        print(f"{self} resources:")
+
+        if self.livestock_facilities and self.livestocks:
+            print(f"Livestock facilities available in {self}")
+            print("Livestocks available are:")
+            for livestock in self.livestocks:
+                print(f"- {livestock}")
+        else:
+            print(f"Livestock facilities are unavailable in {self}")
+
+        if self.crops and self.crop_list:
+            print(f"There are crops available in {self}")
+            print("Here are the available crops:")
+            for crop in self.crop_list:
+                print(f"- {crop}")
+        else:
+            print(f"There are no available crops in {self}")
+
+        if self.equipment_storages:
+            print(f"Equipment storages are available in {self}")
+            print("Here are the equipment storages available:")
+            for storage_unit in self.storage_units:
+                print(f"- {storage_unit}")
+            print("Here are the available equipments:")
+            for equipment in self.equipment_list:
+                print(f"- {equipment}")
+        else:
+            print(f"There are no available storages and equipments in {self}")
+
+        print("All resources accounted for.")
 
 print("******************************************")
 print("\n        Building Management System        \n")
