@@ -10,16 +10,16 @@ class Building(ABC):
     def open_doors(self):
         if not self.door_open:
             self.door_open = True
-            print(f"The door at the {self} is now open.")
+            print(f"The doors of the {self} is now open.")
         else:
-            print(f"The door at the {self} is already open.")
+            print(f"The doors of the {self} is already open.")
 
     def close_doors(self):
         if self.door_open:
             self.door_open = False
-            print(f"The door at the {self} is now closed.")
+            print(f"The doors of the {self} is now closed.")
         else:
-            print(f"The door at the {self} is already closed.")
+            print(f"The doors of the {self} is already closed.")
 
     def get_location(self):
         return self.location
@@ -56,10 +56,10 @@ class Industrial_Building(Building):
             for equipment in self.equipment_list:
                 print(f"- {equipment}")
         else:
-            print(f"{self} does not have a lab.")
+            print(f"The {self} does not have a lab.")
 
     def get_machinery(self):
-        print(f"{self} has the following machinery:")
+        print(f"The {self} has the following machinery:")
         for machinery in self.machinery_list:
             print(f"- {machinery}")
 
@@ -69,7 +69,7 @@ class Industrial_Building(Building):
             equipment_names = ", ".join(self.equipment_list) if self.has_lab else ""
             lab = (f"It includes a {self.lab_type} lab, and contains the following equipment: {equipment_names}."
                    if self.has_lab else "It does not include a lab.")
-            print(f"{self} is located at {self.location}. Size: {self.size} sqm, Floors: {self.floors}")
+            print(f"This {self} is located at {self.location}. Size: {self.size} sqm, Floors: {self.floors}")
             print(f"Machinery: {machinery_names}. {lab}")
         else:
             print("Open the doors first.")
@@ -93,30 +93,30 @@ class Residential_Building(Building):
             print(f"- {resident}")
 
     def get_amenities(self):
-        print(f"Amenities in {self}:")
+        print(f"Amenities in this {self}:")
         for amenity in self.amenities:
             print(f"- {amenity}")
 
     def get_pet_policy(self):
         if self.pet_friendly:
-            print(f"{self} is pet-friendly.")
+            print(f"This {self} is pet-friendly.")
         else:
-            print(f"{self} is not pet-friendly.")
+            print(f"This {self} is not pet-friendly.")
 
     def get_security_status(self):
         if self.has_security:
-            print(f"Security personnel are present in {self}.")
+            print(f"Security personnel are present in this {self}.")
         else:
-            print(f"No security personnel in {self}.")
+            print(f"No security personnel in this {self}.")
 
     def get_emergency_contacts(self):
-        print(f"Emergency contacts for {self}:")
-        for role, number in self.emergency_contacts():
+        print(f"Emergency contacts for this {self}:")
+        for role, number in self.emergency_contacts.items():
             print(f"{role}: {number}")
 
     def building_function(self):
         if self.door_open:
-            print(f"{self} is located at {self.location}.")
+            print(f"This {self} is located at {self.location}.")
             print(f"It has {self.floors} floors, {self.number_of_units} units, and is {self.size} sqm.")
         else:
             print("Open the doors first.")
@@ -131,6 +131,74 @@ class Agricultural_Building(Building):
         self.storage_units = storage_units
         self.crops = crops
         self.crop_list = crop_list
+<<<<<<< HEAD
+=======
+
+    def __str__(self):
+        return f"Agricultural Building at {self.location} with {self.floors} floors"
+
+    def get_storage(self):
+        if self.livestock_facilities:
+            print(f"Livestock facilities are available in {self}")
+            print("Livestocks available are:")
+            for livestock in self.livestocks:
+                print(f"- {livestock}")
+        else:
+            print(f"Livestock facilities are unavailable in {self}")
+    
+    def get_crops(self):
+        if self.crops:
+            print(f"There are crops available in {self}")
+            print("Here are the available crops:")
+            for crop in self.crop_list:
+                print(f"- {crop}")
+        else:
+            print(f"There are no available crops in {self}")
+
+    def get_equipment_storage(self):
+        if self.equipment_storages:
+            print(f"Equipment storages are available in {self}")
+            print("Here are the equipment storages available:")
+            for storage_unit in self.storage_units:
+                print(f"- {storage_unit}")
+            print("Here are the available equipments:")
+            for equipment in self.equipment_list:
+                print(f"- {equipment}")
+        else:
+            print(f"There are no available storages and equipments in {self}")
+
+    def summarize_resources(self):
+        print(f"{self} resources:")
+
+        if self.livestock_facilities and self.livestocks:
+            print(f"Livestock facilities available in {self}")
+            print("Livestocks available are:")
+            for livestock in self.livestocks:
+                print(f"- {livestock}")
+        else:
+            print(f"Livestock facilities are unavailable in {self}")
+
+        if self.crops and self.crop_list:
+            print(f"There are crops available in {self}")
+            print("Here are the available crops:")
+            for crop in self.crop_list:
+                print(f"- {crop}")
+        else:
+            print(f"There are no available crops in {self}")
+
+        if self.equipment_storages:
+            print(f"Equipment storages are available in {self}")
+            print("Here are the equipment storages available:")
+            for storage_unit in self.storage_units:
+                print(f"- {storage_unit}")
+            print("Here are the available equipments:")
+            for equipment in self.equipment_list:
+                print(f"- {equipment}")
+        else:
+            print(f"There are no available storages and equipments in {self}")
+
+        print("All resources accounted for.")
+>>>>>>> 8664115ad4a85c6312f6a821ba5f7d9e04def8a9
 
     def __str__(self):
         return f"Agricultural Building at {self.location} with {self.floors} floors"
@@ -197,82 +265,122 @@ class Agricultural_Building(Building):
 
         print("All resources accounted for.")
 
-print("******************************************")
-print("\n        Building Management System        \n")
-print("******************************************\n")
-print("Welcome to the Building Management System!\n")
-print("Choose the type of Building: ")
-print("1. Industrial Building")
-print("2. Residential Building\n")
+def main():
+    print("******************************************")
+    print("\n        Building Management System        \n")
+    print("******************************************")
+    print("\nWelcome to the Building Management System!\n")
+    print("Choose the type of Building: ")
+    print("1. Industrial Building")
+    print("2. Residential Building\n")
 
-while True:
-    choice = input("Enter your choice (1 or 2): ")
+    while True:
+        choice = input("Enter your choice [1], [2], [3], [4]: ")
 
-    if choice == "1":
-        if input("Do you want to open the doors of the building? (yes/no): ").lower() == "yes":
-            location = input("Enter the location of the building: ")
-            size = int(input("Enter the size of the building (in square meters): "))
-            floors = int(input("Enter the number of floors in the building: "))
-            machinery_list = input("Enter the list of machinery (comma-separated): ").split(", ")
-            has_lab_input = input("Does the building have a lab? (yes/no): ").lower()
-            has_lab = has_lab_input == "yes"
-            if has_lab:
-                lab_type = input("Enter the type of lab: ")
-                equipment_list = input("Enter the list of equipment (comma-separated): ").split(", ")
+        if choice == "1":
+            if input("Do you want to open the doors of the building? (yes/no): ").lower() == "yes":
+                location = input("Enter the location of the building: ")
+                size = int(input("Enter the size of the building (in square meters): "))
+                floors = int(input("Enter the number of floors in the building: "))
+                machinery_list = input("Enter the list of machinery (comma-separated): ").split(", ")
+                has_lab_input = input("Does the building have a lab? (yes/no): ").lower()
+                has_lab = has_lab_input == "yes"
+                if has_lab:
+                    lab_type = input("Enter the type of lab: ")
+                    equipment_list = input("Enter the list of equipment (comma-separated): ").split(", ")
+                else:
+                    lab_type = None
+                    equipment_list = None
+                building = Industrial_Building(location, size, floors, machinery_list, has_lab, lab_type, equipment_list)
+                print()
+                building.open_doors()
+                building.get_machinery()
+                building.get_lab()
+                print()
+                building.building_function()
+                print()
+                if input("Do you want to close the doors of the building? (yes/no): ").lower() == "yes":
+                    building.close_doors()
+                else:
+                    print(f"The doors of {building} are still open.")
             else:
-                lab_type = None
-                equipment_list = None
-            building = Industrial_Building(location, size, floors, machinery_list, has_lab, lab_type, equipment_list)
-            print()
-            building.open_doors()
-            building.get_machinery()
-            building.get_lab()
-            print()
-            building.building_function()
-            print()
-            if input("Do you want to close the doors of the building? (yes/no): ").lower() == "yes":
-                building.close_doors()
-            else:
-                print(f"The doors of {building} are still open.")
-        else:
-            print("\nDoors remain closed. Goodbye!")
+                print("\nDoors remain closed. Goodbye!")
 
-    elif choice == "2":
-        if input("Do you want to open the doors of the building? (yes/no): ").lower() == "yes":
-            location = input("Enter the location of the building: ").strip()
-            size = int(input("Enter the size of the building (in square meters): "))
-            floors = int(input("Enter the number of floors in the building: "))
-            number_of_units = int(input("Enter the number of units in the building: "))
-            residents = input("Enter the list of residents (comma-separated): ").split(", ")
-            amenities = input("Enter the list of amenities (comma-separated): ").split(", ")
-            pet_friendly = input("Is the building pet-friendly? (yes/no): ").lower() == "yes"
-            has_security = input("Does the building have security personnel? (yes/no): ").lower() == "yes"
-            emergency_contacts = {}
+        elif choice == "2":
+            if input("Do you want to open the doors of the building? (yes/no): ").lower() == "yes":
+                location = input("Enter the location of the building: ").strip()
+                size = int(input("Enter the size of the building (in square meters): "))
+                floors = int(input("Enter the number of floors in the building: "))
+                number_of_units = int(input("Enter the number of units in the building: "))
+                residents = input("Enter the list of residents (comma-separated): ").split(", ")
+                amenities = input("Enter the list of amenities (comma-separated): ").split(", ")
+                pet_friendly = input("Is the building pet-friendly? (yes/no): ").lower() == "yes"
+                has_security = input("Does the building have security personnel? (yes/no): ").lower() == "yes"
+                emergency_contacts = {}
             while True:
                 role = input("Enter role for emergency contact (or 'done' to finish): ")
                 if role.lower() == "done":
-                    break
+                    print("\nEmergency contacts cannot be empty.\n")
+                    continue
+                if role == "":
+                    print("Role cannot be empty.")
+                    continue
+                
                 number = input(f"Enter phone number for {role}: ")
+                if number == "":
+                    print("Phone number cannot be empty.")
+                    continue
+                
                 emergency_contacts[role] = number
-            building = Residential_Building(location, size, floors, number_of_units, residents, amenities, pet_friendly, has_security, emergency_contacts)
-            print()
-            building.open_doors()
-            building.get_residents()
-            building.get_amenities()
-            building.get_pet_policy()
-            building.get_security_status()
-            building.get_emergency_contacts()
-            print()
-            building.building_function()
-            print()
-            if input("Do you want to close the doors of the building? (yes/no): ").lower() == "yes":
-                building.close_doors()
-            else:
-                print(f"The doors of {building} are still open.")
-        else:
-            print("\nDoors remain closed. Goodbye!")
+                    
 
-    else:
-        print("Invalid choice.\n")
-        continue
-    break
+                building = Residential_Building(location, size, floors, number_of_units, residents, amenities, pet_friendly, has_security, emergency_contacts)
+                print()
+                building.open_doors()
+                building.get_residents()
+                building.get_amenities()
+                building.get_pet_policy()
+                building.get_security_status()
+                building.get_emergency_contacts()
+                print()
+                building.building_function()
+                print()
+                if input("Do you want to close the doors of the building? (yes/no): ").lower() == "yes":
+                    building.close_doors()
+                    break
+                else:
+                    print(f"The doors of {building} are still open.")
+            
+        elif choice == "3":
+            if input("Do you want to open the doors of the building? (yes/no): ").lower() == "yes":
+                location = input("Enter the location of the building: ")
+                size = int(input("Enter the size of the building (in square meters): "))
+                floors = int(input("Enter the number of floors in the building: "))
+                livestock_facilities = input("Does the building have livestock facilities? (yes/no): ").lower() == "yes"
+                livestocks = input("Enter the list of livestocks (comma-separated): ").split(", ")
+                equipment_storages = input("Does the building have equipment storages? (yes/no): ").lower() == "yes"
+                equipment_list = input("Enter the list of equipment (comma-separated): ").split(", ")
+                storage_units = input("Enter the list of storage units (comma-separated): ").split(", ")
+                crops = input("Are there crops available? (yes/no): ").lower() == "yes"
+                crop_list = input("Enter the list of crops (comma-separated): ").split(", ")
+                
+                building = Agricultural_Building(location, size, floors, livestock_facilities, livestocks, equipment_storages, equipment_list, storage_units, crops, crop_list)
+                print()
+                building.open_doors()
+                building.get_storage()
+                building.get_crops()
+                building.get_equipment_storage()
+                print()
+                building.summarize_resources()
+                print()
+                if input("Do you want to close the doors of the building? (yes/no): ").lower() == "yes":
+                    building.close_doors()
+                    break
+            else:
+                print("\nDoors remain closed. Goodbye!")
+        else:
+            print("\nInvalid choice.\n")
+            continue
+        break
+
+main()
