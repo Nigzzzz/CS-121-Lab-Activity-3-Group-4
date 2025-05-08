@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/2985df4a-b5c9-4f4a-98a7-253fa0d74a3a)# CS121 Lab 3 Group 4
+# CS121 Lab 3 Group 4
 ## by: Group 4
 
 # Title: Building Management System
