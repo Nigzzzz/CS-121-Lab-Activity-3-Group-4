@@ -8,6 +8,7 @@
 ### Estil, Susan Marie
 ### Perez, Gabriel Theodore
 
+
 This Python-based Building Management System (BMS) allows users to manage and simulate different types of buildings, including "Industrial", "Residential", "Agricultural", and "Warehouse" types. 
 
 Features:
@@ -18,6 +19,7 @@ Features:
   - "Agricultural_Building": manages crops, livestock, and equipment storage
   - "Warehouse": stores and manages inventory with capacity tracking
 - Validates user input (e.g., phone numbers, yes/no responses, integers)
+
 
 How to Run the Program:
 
