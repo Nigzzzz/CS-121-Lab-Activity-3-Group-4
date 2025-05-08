@@ -24,4 +24,6 @@ Features:
 How to Run the Program:
 
 1. Make sure Python 3 is installed on your machine. You can check this by running: bash --> python --version
-  
+2. Save the code to a file named bms.py or any name you prefer.
+3. Open a terminal or command prompt, navigate to the folder where the script is saved.
+4. Run the script using: python bms.py
