@@ -31,7 +31,7 @@ This Python-based Building Management System (BMS) allows users to manage and si
 
 **Acknowledgements:**
 
-We would like to thank Prof. Fatima Marie Agdon for her valuable guidance, support, and for providing the foundational knowledge in object-oriented programming that made this project possible.
+We would like to thank Ma'am Fatima Marie Agdon for her valuable guidance, support, and for providing the foundational knowledge in object-oriented programming that made this project possible.
 
 Special thanks to our peers for the collaborative discussions, feedback, and encouragement throughout the development of this system.
 
